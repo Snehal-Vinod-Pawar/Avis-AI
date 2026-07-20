@@ -45,35 +45,6 @@ cd ../../frontend && npm install
 docker run -d -p 6379:6379 redis:alpine
 ```
 
-### Environment Variables
-
-**Backend Gateway** (`.env`)
-```env
-PORT=8000
-FRONTEND_URL=http://localhost:5173
-CHAT_SERVICE=http://localhost:8002
-AGENT_SERVICE=http://localhost:8003
-AUTH_SERVICE=http://localhost:8001
-REDIS_URL=redis://localhost:6379
-```
-
-**Agent Service** (`.env`)
-```env
-PORT=8003
-MONGODB_URI=mongodb://localhost:27017/avis-ai
-REDIS_URL=redis://localhost:6379
-GROQ_API_KEY=your-groq-api-key
-GOOGLE_API_KEY=your-google-api-key
-```
-
-**Frontend** (`.env`)
-```env
-VITE_SERVER_URL=http://localhost:8000
-VITE_FIREBASE_API_KEY=your-firebase-api-key
-VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your-project-id
-```
-
 ### Running the Application
 
 ```bash
