@@ -31,7 +31,8 @@ export const router = async (state) => {
           chat
           search
           coding
-          pdf  
+          pdf
+          ppt
           vision
           
           User Query:
@@ -39,7 +40,15 @@ export const router = async (state) => {
     `
 
     const response = await llm.invoke(prompt)
-    const selectedAgent = response.content.trim().toLowerCase()
+    let selectedAgent = response.content.trim().toLowerCase()
+    
+    // Validate agent name - fallback to chat if invalid
+    const validAgents = ['chat', 'search', 'coding', 'pdf', 'ppt', 'vision']
+    if (!validAgents.includes(selectedAgent)) {
+      console.warn(`Invalid agent selected: ${selectedAgent}, falling back to chat`)
+      selectedAgent = 'chat'
+    }
+    
     return {
         ...state,
         agent: selectedAgent

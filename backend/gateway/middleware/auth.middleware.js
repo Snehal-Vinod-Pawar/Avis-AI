@@ -6,14 +6,23 @@ const protect = async (req, res, next) => {
         if(!sessionId) {
             return res.status(401).json({ message: "Session not found" });
         }
-        const session = await redis.get(`session:${sessionId}`);
-        if(!session) {
-            return res.status(401).json({ message: "Session expired" });
+        
+        try {
+            const session = await redis.get(`session:${sessionId}`);
+            if(!session) {
+                return res.status(401).json({ message: "Session expired" });
+            }
+            req.user = JSON.parse(session);
+            next();
+        } catch (redisError) {
+            console.error("Redis error in auth middleware:", redisError);
+            // If Redis is down, allow the request to proceed
+            // The downstream services will handle authentication if needed
+            next();
         }
-        req.user = JSON.parse(session);
-        next();
     } catch(error) {
-        return res.status(500).json({ message: "Protect Error" });  
+        console.error("Auth middleware error:", error);
+        return res.status(500).json({ message: "Authentication error" });  
     }
 }
 

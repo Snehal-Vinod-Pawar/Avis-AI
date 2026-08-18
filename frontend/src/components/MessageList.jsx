@@ -25,12 +25,25 @@ function MessageList() {
                 </div>
             </div>
         ) :
-        <div className="cls">
-            {messages.map((msg,i) => (
-                <div key={msg?._id || i} className="cls">
-                    <MessageBubble role={msg?.role} content={msg?.content}/>
-                </div>
-            ))}
+        <div className="space-y-4">
+            {messages.map((msg,i) => {
+                // Vision agent images come from pollinations.ai (image generation)
+                // Search results images come from various external sources
+                const isVisionAgent = msg?.role === "assistant" && 
+                    msg?.images?.length > 0 && 
+                    msg?.images?.[0]?.includes("pollinations.ai")
+                
+                return (
+                    <div key={msg?._id || i}>
+                        <MessageBubble 
+                            role={msg?.role} 
+                            content={msg?.content} 
+                            images={msg.images || []}
+                            isVisionAgent={isVisionAgent}
+                        />
+                    </div>
+                )
+            })}
         </div>
         }
     </div>

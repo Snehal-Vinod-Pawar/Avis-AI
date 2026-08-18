@@ -7,7 +7,7 @@ import getMessages from '../features/getMessages'
 import { useSelector } from 'react-redux'
 import { useDebugValue } from 'react'
 import { useDispatch } from 'react-redux'
-import { setMessages } from '../redux/messageSlice'
+import { setArtifacts, setMessages } from '../redux/messageSlice'
 
 function ChatArea() {
   const { selectedConversation } =   useSelector(state => state.conversation)
@@ -16,14 +16,15 @@ function ChatArea() {
     const getMesg = async () => {
         if(selectedConversation){
             if(selectedConversation.title=="New Chat") return;
-            const data = await getMessages(selectedConversation?._id)
+            const data = await getMessages(selectedConversation?._id, dispatch)
+            console.log(data)
             dispatch(setMessages(data))
         }
     }
     getMesg()
   },[selectedConversation?._id])  
   return (
-    <div className='flex-1 flex flex-col'>
+    <div className='flex-1 min-w-0 flex flex-col'>
         <Nav/>
         <MessageList/>
         <ChatInput/>
