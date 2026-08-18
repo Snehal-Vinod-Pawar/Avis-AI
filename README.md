@@ -7,6 +7,8 @@
 ![LangChain](https://img.shields.io/badge/LangChain-LangGraph-orange)
 
 A multi-agent AI assistant that routes user requests to specialized agents (chat, coding, search, vision, PPT, PDF) through a unified interface.
+<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/17c186ce-9d0c-416b-ad80-bc6a689cdd66" />
+
 
 ## Features
 
