@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+/* ---------- Avis AI landing keyframes ---------- */
+@keyframes avis-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+}
+
+@keyframes avis-float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+@keyframes avis-pulse-glow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes avis-aurora {
+    0%, 100% { transform: translate(-8%, -4%) rotate(0deg); }
+    50% { transform: translate(8%, 6%) rotate(8deg); }
+}
+
+@keyframes avis-shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+
+@keyframes avis-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes avis-orbit {
+    0% { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+.avis-float { animation: avis-float 6s ease-in-out infinite; }
+.avis-float-slow { animation: avis-float-slow 9s ease-in-out infinite; }
+.avis-pulse-glow { animation: avis-pulse-glow 5s ease-in-out infinite; }
+.avis-aurora { animation: avis-aurora 14s ease-in-out infinite; }
+.avis-marquee { animation: avis-marquee 28s linear infinite; }
+
+.avis-shimmer-text {
+    background: linear-gradient(110deg, #6366f1 20%, #c4b5fd 40%, #818cf8 60%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: avis-shimmer 5s linear infinite;
+}
+
+.avis-grid-bg {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+}
