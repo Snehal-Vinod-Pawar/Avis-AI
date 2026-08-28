@@ -14,8 +14,20 @@ dotenv.config();
 const port = process.env.PORT || 8000;
 
 const app = express();
+// Allowlist: production frontend URL via env, plus localhost for local dev.
+// If origin is not in the list, CORS headers are simply not sent (no crash).
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "http://localhost:4173",
+  "http://localhost:3000"
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(null, false);
+  },
   credentials: true
 }));
 

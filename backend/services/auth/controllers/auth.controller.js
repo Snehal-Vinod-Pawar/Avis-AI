@@ -53,7 +53,11 @@ export const logout = async (req, res) => {
             return res.status(400).json({ message: "No session found" });
         }
         await redis.del(`session:${sessionId}`);
-        res.clearCookie("session");
+        res.clearCookie("session", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
+        });
         return res.status(200).json({ message: "Logged out successfully" });    
     } catch (error) {
         res.status(500).json({ message: `Logout Error ${error}`});
