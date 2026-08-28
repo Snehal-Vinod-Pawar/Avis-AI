@@ -1,0 +1,10 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared modules (Redis client) used by the backend microservices. Each service installs these deps into this folder via its postinstall script, so Node resolves them from backend/shared/node_modules at runtime.",
+  "dependencies": {
+    "ioredis": "^5.11.1"
+  }
+}
