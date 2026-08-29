@@ -198,6 +198,13 @@ ${state.prompt}
 
                 try {
                     data = JSON.parse(jsonStr)
+                    // Normalize: the prompt asks the model for "path", but the
+                    // frontend Artifact panel expects "name". Keep both.
+                    data.files?.forEach(file => {
+                        if (file.path && !file.name) {
+                            file.name = file.path
+                        }
+                    })
                     // Unescape newlines and tabs in file contents
                     data.files?.forEach(file => {
                         if (file.content) {
