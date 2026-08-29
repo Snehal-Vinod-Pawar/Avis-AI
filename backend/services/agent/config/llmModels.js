@@ -6,14 +6,13 @@ import { ChatOpenRouter } from "@langchain/openrouter";
 dotenv.config()
 
 const groq = new ChatGroq({
-    model: "llama-3.3-70b-versatile",
-    // model: process.env.GROQ_MODEL || "openai/gpt-oss-120b",
+    model: process.env.GROQ_MODEL || "openai/gpt-oss-120b",
     apiKey: process.env.GROQ_API_KEY
 })
 
 const gemini = new ChatGoogleGenerativeAI({
     model: "gemini-2.5-flash",
-    apiKey: process.env.GEMINI_API_KEY
+    apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
 })
 
 
